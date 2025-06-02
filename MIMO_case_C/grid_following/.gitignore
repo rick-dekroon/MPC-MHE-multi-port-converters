@@ -1,0 +1,10 @@
+/slprj
+*.slxc
+*.asv
+
+# Automatically generated functions
+Aekf.m
+Cekf.m
+
+# Generated figures
+/figures
