@@ -1,46 +1,73 @@
-# Automated MPC and MHE compensator design for multi-port converter architectures
+# Automated controller and compensator design for multi-port converter architectures
 
-## Description
+## Motivation and Context
 
-To ensure balance on the distribution grid and avoid overloads, owners of residential PV installations are incentivized to maximize their self-consumption. As it is difficult to match the consumption and production directly in time, photovoltaic (PV) battery systems are developed to store the excess of energy when the solar production is high and the consumption is low and release this energy again when the situation reverses. Currently, two topologies are dominating the market. The AC coupled system displayed in Figure 1a is mostly used in retrofit installations where a battery is wanted while a PV system is already in place. Completely separate AC/DC and DC/DC converters are used to couple the solar panel string and battery to the grid. The DC coupled system shown in Figure 1b, is mostly used in newer installations. The coupling between PV and battery is no longer achieved at the AC side but moved to the DC side. Both PV and battery have their own DC/DC converter but only a single DC/AC converter is used for the connection to the grid. Doing this eliminated one AC/DC converter, generally making the system less expensive and more efficient as two conversion steps are eliminated when charging the battery [1]. Next to these two commercial topologies also a third topology is emerging, the so called Multiple Input Multiple Output (MIMO) converters. Here the number of components and conversion steps is reduced even further by sharing active and passive components between the DC/DC converters, because of this no distinct DC bus is present anymore as shown in Figure 1c [2].
+Existing power systems are undergoing a significant transformation, driven by the integration of renewable energy sources, the electrification of transportation, and the increasing demand for energy efficiency [1].
+A contribution to this transformation is the development of multi-port converters proposed in [2, 3].
 
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/769d76e6-9e8f-467e-a7b7-9b66854896c8" alt="Figure 1" width="900">
-  <p align="left"><b>Figure 1:</b> schematical representation of a) an AC coupled b) DC coupled and c) MIMO converter PV battery system.</p>
-</div>
-
-To acquire these new topologies, a framework has been built which generates the different connection possibilities of the converter components as shown in Figure 2. The framework starts with valid structures which are filled in with components, avoiding short circuits. By applying the Kirchoff current and voltage laws (KCL and KVL), the feasible topologies with the required voltage relations can be identified and the unsuitable combinations can be removed. 
-
-<table style="width:100%;">
+<table align="center" style="width:100%;">
   <tr>
     <td align="center">
-      <img src="https://github.com/user-attachments/assets/7c3ab96f-46e7-472a-bf4e-c9328d5b7c3a" alt="Subfigure 1" width="400"><br>
-      a)
+      <img src="https://github.com/user-attachments/assets/da619579-ff3c-45c0-833f-3bcd63b54e7d" alt="Subfigure 1" width="300"><br>
+      <p style="text-align: center;">(a) AC-coupled.</p>
     </td>
     <td align="center">
-      <img src="https://github.com/user-attachments/assets/ca3023cb-5092-4600-aad6-240ddfaa70d8" alt="Subfigure 2" width="500"><br>
-      b)
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <img src="https://github.com/user-attachments/assets/63fdc11f-82a3-4f45-a4a3-cc911edb18ac" alt="Subfigure 3" width="300"><br>
-      c)
+      <img src="https://github.com/user-attachments/assets/db88b50a-e0ad-4f26-ba5f-a7ab106995c5" alt="Subfigure 2" width="300"><br>
+      <p style="text-align: center;">(b) DC-coupled.</p>
     </td>
     <td align="center">
-      <img src="https://github.com/user-attachments/assets/873e3ae3-3f03-425a-8a5d-695123b0af62" alt="Subfigure 4" width="600"><br>
-      d)
+      <img src="https://github.com/user-attachments/assets/e9eb9efc-01c6-454b-b5de-7e91bd1db5c0" alt="Subfigure 3" width="300"><br>
+      <p style="text-align: center;">(c) Multi-port converter.</p>
     </td>
   </tr>
 </table>
-<p align="left"><b>Figure 2:</b> schematical representation of the converter derivation methodology. a) The valid structures for connecting the wanted number of components are generated. b) Components are inserted into the structures without creating short circuits. c) The directional characteristics of the components are considered, and short circuits are removed. d) The KCL and KVL are applied to check if the wanted voltage relations can be achieved resulting in the final circuit.</p>
+<p align="center" style="width:100%;"">
+  <b>Figure 1:</b> Comparison of existing AC- and DC-coupled system structures with the proposed multi-port converter system structure.
+</p>
 
-After the derivation of these converters, it is still needed to develop the control strategies for the active devices. Currently this is a manual effort in which the different switching modes are identified and PID controllers are tuned to achieve a satisfactory response. This thesis aims to develop a strategy to automatically develops these control strategies for the different converters generated by the initial framework.
+Figure 1 illustrates different system structures for integrating photovoltaic (PV) sources, batteries, and the electrical grid in single-phase installations [2].
+The AC-coupled system connects multiple AC sources and loads through a common AC bus, while the DC-coupled system connects DC sources and loads through a common DC bus.
+The multi-port converter is a power electronic device that can connect multiple energy sources and loads through a single converter architecture.
+Since the multi-port converter system structure is a single converter architecture, it uses fewer components than the AC- and DC-coupled system structures.
+Fewer components lead to a lower cost, lower losses (higher efficiency), and a smaller footprint.
+Additionally, the components of the converters in the AC-coupled and DC-coupled system structures do not experience the same electrical and thermal stress at all times.
+While the components of the multi-port converter system structure experience the same electrical and thermal stress at all times, which leads to a more uniform aging of the components, hence a higher realiablity.
 
-The student will start with developing a control strategy for a single MIMO converter, decoupling the energy flows between the different ports. When a good controller for this initial topology is achieved, the student will try to generalize the used approach.
+The topology of the multi-port converter is already automated in [3].
+However, to fully realize the potential of these systems, it is important to also consider the automation of control and estimation strategies.
+Automated approaches can help streamline the integration of multi-port converters into diverse applications, reduce manual engineering effort, and facilitate rapid adaptation to evolving system requirements.
+This context motivates the need for further research into systematic methods for automating not only the topology, but also the associated control and estimation design for multi-port converter architectures.
+
+## Problem Statement
+
+While multi-port converter architectures offer significant advantages in terms of integration, efficiency, and reliability, their operation introduces new challenges for control and estimation. Existing methods are often tailored to single-port or simpler multi-converter systems and do not fully address the complexity, interactions, and constraints inherent in multi-port topologies. As the number of ports and system requirements increase, manual design of controllers and estimators becomes increasingly time-consuming, error-prone, and difficult to scale.
+
+There is a clear need for systematic and automated approaches to the design of control and estimation strategies that can ensure stability, performance, and robustness for multi-port converter architectures. Addressing this gap is essential for enabling reliable, cost-effective, and scalable deployment of advanced power electronic systems in modern energy networks.
+
+## Research Questions and Objectives
+
+This thesis extends the work of [2, 3] by investigating the control and estimation strategies for multi-port converter architectures.
+The research will be guided by the following research questions:
+
+- What different kinds of control and estimation strategies exist for multi-port converter architectures? Which control and estimation strategy is most suitable for automation?
+- How can this control and estimation strategy be deployed on multi-port converter architectures?
+  - How can a model of the system dynamics be derived?
+  - What are the key design steps involved in this control and estimation strategy?
+  - What challenges arise during the implementation of this control and estimation strategy?
+  - How robust is this control and estimation strategy to system uncertainties?
+  - How does this control and estimation strategy perform in simulation studies?
+- How can this control and estimation strategy be automated for multi-port converter architectures?
+  - How can a model of the system dynamics be automatically derived?
+  - What are the difficulties in automating this control and estimation strategy?
+
+## Structure
+
+The thesis is organized as follows. Chapter 1 introduces the motivation, context, problem statement, research questions, and objectives. Chapter 2 provides a literature review on modeling, parameterization, control, and estimation strategies for power electronic converters, including robustness and stability assessment methods. Chapter 3 presents the design and implementation of the controller for multi-port converter architectures, covering model derivation, optimal control problem formulation, terminal conditions, implementation details, robustness analysis, and simulation results. Chapter 4 details the design and integration of the estimator with the controller, including estimator formulation, implementation, robustness to measurement noise, and simulation results. Chapter 5 discusses the automation of controller and estimator design, focusing on automated model derivation, tuning strategies, and practical aspects of real-time implementation. Finally, Chapter 6 summarizes the main findings and provides recommendations for future work.
 
 ## References
 
-[1]	S. Ravyts, M. D. Vecchia, G. V. den Broeck, and J. Driesen, “Review on building-integrated photovoltaics electrical system requirements and module-integrated converter recommendations,” Energies, vol. 12, p. 1532, apr 2019.
+[1] International Energy Agency. (2024). *Energy Technology Perspectives 2024*. IEA, Paris. [CC BY 4.0 License](https://www.iea.org/reports/energy-technology-perspectives-2024).
 
-[2] 	S. Danyali, S. H. Hosseini, and G. B. Gharehpetian, “New extendable single-stage multi-input DC–DC/AC boost converter,” IEEE Transactions on Power Electronics, vol. 29, pp. 775–788, feb 2014.
+[2] Deckers, M., Van Cappellen, L., Emmers, G., Poormohammadi, F., & Driesen, J. (2022). Cost comparison for different PV-battery system architectures including power converter reliability. In *2022 24th European Conference on Power Electronics and Applications (EPE’22 ECCE Europe)* (pp. 1–11). IEEE.
+
+[3] Deckers, M., & Driesen, J. (2024). Automated power converter topology derivation methodology based on exhaustive graph search. *IEEE Transactions on Power Electronics*.
