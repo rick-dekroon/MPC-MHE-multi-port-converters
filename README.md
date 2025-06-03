@@ -22,18 +22,18 @@ A contribution to this transformation is the development of multi-port converter
   </tr>
 </table>
 <p align="center" style="width:100%;"">
-  <b>Figure 1:</b> Comparison of existing AC- and DC-coupled system structures with the proposed multi-port converter system structure.
+  <b>Figure 1:</b> Comparison of existing AC- and DC-coupled system structures with the proposed multi-port converter system structure [2].
 </p>
 
-Figure 1 illustrates different system structures for integrating photovoltaic (PV) sources, batteries, and the electrical grid in single-phase installations [2].
-The AC-coupled system connects multiple AC sources and loads through a common AC bus, while the DC-coupled system connects DC sources and loads through a common DC bus.
-The multi-port converter is a power electronic device that can connect multiple energy sources and loads through a single converter architecture.
+Figure 1 illustrates different system structures for integrating photovoltaic (PV) sources, batteries, and the electrical grid in single-phase installation [2].
+The AC-coupled system in Figure 1a connects multiple AC sources and loads through a common AC bus, while the DC-coupled system in Figure 1b connects DC sources and loads through a common DC bus.
+The multi-port converter in Figure 1c is a power electronic device that can connect multiple energy sources and loads through a single converter architecture.
 Since the multi-port converter system structure is a single converter architecture, it uses fewer components than the AC- and DC-coupled system structures.
 Fewer components lead to a lower cost, lower losses (higher efficiency), and a smaller footprint.
-Additionally, the components of the converters in the AC-coupled and DC-coupled system structures do not experience the same electrical and thermal stress at all times.
-While the components of the multi-port converter system structure experience the same electrical and thermal stress at all times, which leads to a more uniform aging of the components, hence a higher realiablity.
+Additionally, the multi-port converter enables multiple power flows to be combined within the same components, resulting in less fluctuating loading for each component. This leads to more uniform aging and, consequently, higher reliability.
 
-The topology of the multi-port converter is already automated in [3].
+Designing the topology and compensators for multi-port converter architectures demands greater effort, as these solutions must be customized for each specific application.
+The topology derivation of the multi-port converter is already automated in [3].
 However, to fully realize the potential of these systems, it is important to also consider the automation of control and estimation strategies.
 Automated approaches can help streamline the integration of multi-port converters into diverse applications, reduce manual engineering effort, and facilitate rapid adaptation to evolving system requirements.
 This context motivates the need for further research into systematic methods for automating not only the topology, but also the associated control and estimation design for multi-port converter architectures.
@@ -49,16 +49,16 @@ There is a clear need for systematic and automated approaches to the design of c
 This thesis extends the work of [2, 3] by investigating the control and estimation strategies for multi-port converter architectures.
 The research will be guided by the following research questions:
 
-- What different kinds of control and estimation strategies exist for multi-port converter architectures? Which control and estimation strategy is most suitable for automation?
+- What different kinds of control and estimation strategies exist, and which control and estimation strategy is most suitable for automation?
 - How can this control and estimation strategy be deployed on multi-port converter architectures?
   - How can a model of the system dynamics be derived?
   - What are the key design steps involved in this control and estimation strategy?
-  - What challenges arise during the implementation of this control and estimation strategy?
+  - What approaches can be used to ensure the stability of this control and estimation strategy?
   - How robust is this control and estimation strategy to system uncertainties?
   - How does this control and estimation strategy perform in simulation studies?
 - How can this control and estimation strategy be automated for multi-port converter architectures?
   - How can a model of the system dynamics be automatically derived?
-  - What are the difficulties in automating this control and estimation strategy?
+  - What methods can be used to automate the tuning of this control and estimation strategy?
 
 ## Structure
 
@@ -66,8 +66,8 @@ The thesis is organized as follows. Chapter 1 introduces the motivation, context
 
 ## References
 
-[1] International Energy Agency. (2024). *Energy Technology Perspectives 2024*. IEA, Paris. [CC BY 4.0 License](https://www.iea.org/reports/energy-technology-perspectives-2024).
+1. International Energy Agency. (2024). *Energy Technology Perspectives 2024*. IEA, Paris. [CC BY 4.0 License](https://www.iea.org/reports/energy-technology-perspectives-2024).
 
-[2] Deckers, M., Van Cappellen, L., Emmers, G., Poormohammadi, F., & Driesen, J. (2022). Cost comparison for different PV-battery system architectures including power converter reliability. In *2022 24th European Conference on Power Electronics and Applications (EPE’22 ECCE Europe)* (pp. 1–11). IEEE.
+2. Deckers, M., Van Cappellen, L., Emmers, G., Poormohammadi, F., & Driesen, J. (2022). Cost comparison for different PV-battery system architectures including power converter reliability. *Proceedings of the 2022 24th European Conference on Power Electronics and Applications (EPE’22 ECCE Europe)*, IEEE, pp. 1–11.
 
-[3] Deckers, M., & Driesen, J. (2024). Automated power converter topology derivation methodology based on exhaustive graph search. *IEEE Transactions on Power Electronics*.
+3. Deckers, M., & Driesen, J. (2024). Automated power converter topology derivation methodology based on exhaustive graph search. *IEEE Transactions on Power Electronics*.
