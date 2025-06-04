@@ -1,0 +1,11 @@
+# Generated files
+**/slprj
+*.slxc
+*.asv
+
+# Generated figures
+**/figures
+
+# Generated functions
+**/[A-C][1-2].m
+**/[A-C]ekf.m
