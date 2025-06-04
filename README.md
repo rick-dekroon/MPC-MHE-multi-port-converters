@@ -44,25 +44,15 @@ While multi-port converter architectures offer significant advantages in terms o
 
 There is a clear need for systematic and automated approaches to the design of control and estimation strategies that can ensure stability, performance, and robustness for multi-port converter architectures. Addressing this gap is essential for enabling reliable, cost-effective, and scalable deployment of advanced power electronic systems in modern energy networks.
 
-## Research Questions and Objectives
+## Repository Structure
 
-This thesis extends the work of [2, 3] by investigating the control and estimation strategies for multi-port converter architectures.
-The research will be guided by the following research questions:
+Model Predictive Control (MPC) and Moving Horizon Estimation (MHE) are advanced techniques implemented for the control and state estimation of multi-port converters. This repository provides a modular framework developed in `MATLAB/Simulink 2024b` and `PLECS 4.8.9 blockset`, enabling rapid prototyping, simulation, and validation of MPC and MHE strategies tailored to multi-port converter architectures.
 
-- What different kinds of control and estimation strategies exist, and which control and estimation strategy is most suitable for automation?
-- How can this control and estimation strategy be deployed on multi-port converter architectures?
-  - How can a model of the system dynamics be derived?
-  - What are the key design steps involved in this control and estimation strategy?
-  - What approaches can be used to ensure the stability of this control and estimation strategy?
-  - How robust is this control and estimation strategy to system uncertainties?
-  - How does this control and estimation strategy perform in simulation studies?
-- How can this control and estimation strategy be automated for multi-port converter architectures?
-  - How can a model of the system dynamics be automatically derived?
-  - What methods can be used to automate the tuning of this control and estimation strategy?
+The three multi-port converter topologies proposed in [3] have been simulated and organized for clarity and ease of use. Under the `simulate` directory, you will find three main folders: `MIMO_Case_A`, `MIMO_Case_B`, and `MIMO_Case_C`, each corresponding to a specific converter topology.
 
-## Structure
+For `MIMO_Case_A`, both the MPC controller and the combined MPC/MHE compensator implementations are included within the `grid-following` and `grid-forming` subfolders. Additionally, this case provides three dedicated MATLAB files—`ellipsoid_invariant_set.m`, `maximal_controlled_positive_invariant_set.m`, and `maximal_positive_invariant_set.m`—for visualizing the different terminal conditions of the MPC controller.
 
-The thesis is organized as follows. Chapter 1 introduces the motivation, context, problem statement, research questions, and objectives. Chapter 2 provides a literature review on modeling, parameterization, control, and estimation strategies for power electronic converters, including robustness and stability assessment methods. Chapter 3 presents the design and implementation of the controller for multi-port converter architectures, covering model derivation, optimal control problem formulation, terminal conditions, implementation details, robustness analysis, and simulation results. Chapter 4 details the design and integration of the estimator with the controller, including estimator formulation, implementation, robustness to measurement noise, and simulation results. Chapter 5 discusses the automation of controller and estimator design, focusing on automated model derivation, tuning strategies, and practical aspects of real-time implementation. Finally, Chapter 6 summarizes the main findings and provides recommendations for future work.
+For `MIMO_Case_B` and `MIMO_Case_C`, each case folder contains `grid-following` and `grid-forming` subfolders, but only the MPC/MHE compensator implementation is provided for these topologies. This structure enables straightforward comparison and testing of the compensator-based control strategies across all three multi-port converter topologies.
 
 ## References
 
