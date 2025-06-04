@@ -50,7 +50,7 @@ Model Predictive Control (MPC) and Moving Horizon Estimation (MHE) are advanced 
 
 The three multi-port converter topologies proposed in [3] have been simulated and organized for clarity and ease of use. Under the `simulate` directory, you will find three main folders: `MIMO_Case_A`, `MIMO_Case_B`, and `MIMO_Case_C`, each corresponding to a specific converter topology.
 
-For `MIMO_Case_A`, both the MPC controller and the combined MPC/MHE compensator implementations are included within the `grid-following` and `grid-forming` subfolders. Additionally, this case provides three dedicated MATLAB files—`ellipsoid_invariant_set.m`, `maximal_controlled_positive_invariant_set.m`, and `maximal_positive_invariant_set.m`—for visualizing the different terminal conditions of the MPC controller.
+For `MIMO_Case_A`, both the MPC controller and the combined MPC/MHE compensator implementations are included within the `grid-following` and `grid-forming` subfolders. Additionally, this case provides three dedicated MATLAB files—[ellipsoid_invariant_set.m](simulate/MIMO_Case_A/ellipsoid_invariant_set.m), [maximal_controlled_positive_invariant_set.m](simulate/MIMO_Case_A/maximal_controlled_positive_invariant_set.m), and [maximal_positive_invariant_set.m](simulate/MIMO_Case_A/maximal_positive_invariant_set.m)—for visualizing the different terminal conditions of the MPC controller.
 
 For `MIMO_Case_B` and `MIMO_Case_C`, each case folder contains `grid-following` and `grid-forming` subfolders, but only the MPC/MHE compensator implementation is provided for these topologies. This structure enables straightforward comparison and testing of the compensator-based control strategies across all three multi-port converter topologies.
 
